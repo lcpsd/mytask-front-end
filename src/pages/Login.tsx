@@ -28,21 +28,22 @@ export function Login() {
     }
 
     useEffect(() => {
-        navigate("/dashboard")
+        if (user) {
+            navigate("/dashboard")
+        }
     }, [user])
 
     return (
         <form onSubmit={handleSubmit(handleLogin)}>
+            <p>Email</p>
             <input type="email" {...register("email")} />
             <p>{errors.email?.message.toString()}</p>
 
+            <p>Senha</p>
             <input type="password" {...register("password")} />
             <p>{errors.password?.message.toString()}</p>
 
             <button type="submit">Entrar</button>
-            <Link to="/register">
-                <a>Criar Conta</a>
-            </Link>
         </form>
     )
 }

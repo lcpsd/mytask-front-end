@@ -1,6 +1,12 @@
+import { useApi } from "../hooks/useApi"
+
 export function Dashboard() {
 
+    const { logOut } = useApi()
+
     return (
-        <div>Dashboard</div>
+        <div>
+            <button onClick={logOut}>Sair</button>
+        </div>
     )
 }

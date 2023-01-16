@@ -2,11 +2,11 @@ import { createContext, useContext, useState } from "react";
 
 
 interface AuthContextProps {
-    user: UserProps | null;
+    user: UserProps | undefined;
     setUser: (props: UserProps) => void;
 }
 
-const UserContext = createContext<AuthContextProps>(null)
+const UserContext = createContext<AuthContextProps>(undefined)
 
 export function UserProvider({ children }) {
 
