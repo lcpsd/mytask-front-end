@@ -13,7 +13,7 @@ export function useApi() {
         },
 
         async logOut() {
-            localStorage.setItem('Bearer', "")
+            localStorage.removeItem('Bearer')
         },
 
         async register(data: UserRegisterProps) {
