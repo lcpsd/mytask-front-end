@@ -21,7 +21,6 @@ export function Login() {
 
     async function handleLogin(formData: UserLoginProps) {
         const { data } = await signIn(formData.email, formData.password)
-        axios.defaults.headers.common["Bearer"] = data.token
 
         delete data.token
         setUser(data)

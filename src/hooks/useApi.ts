@@ -7,11 +7,13 @@ export function useApi() {
     return {
         async signIn(email: string, password: string) {
             const res = await api.post<UserProps>("/auth", { email, password })
+            localStorage.setItem('Bearer', res.data.token)
             return res
         },
 
         async logOut() {
             setUser(undefined)
+            localStorage.setItem('Bearer', "")
         },
 
         async register(data: UserRegisterProps) {
