@@ -1,4 +1,4 @@
-import { FormProps } from "react-router-dom";
+import { FormProps, Link } from "react-router-dom";
 import { loginSchema } from "../schemas/login";
 import { useFormResolver } from "../hooks/useFormResolver";
 
@@ -23,6 +23,9 @@ export function Login() {
             <p>{errors.password?.message.toString()}</p>
 
             <button type="submit">Entrar</button>
+            <Link to="/register">
+                <a>Criar Conta</a>
+            </Link>
         </form>
     )
 }
