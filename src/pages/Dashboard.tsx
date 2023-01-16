@@ -4,7 +4,7 @@ import { useApi } from "../hooks/useApi"
 
 export function Dashboard() {
 
-    const { logOut } = useApi()
+    const { handleLogOut } = useUser()
     const { user } = useUser()
 
     async function handleGetUser() {
@@ -15,7 +15,7 @@ export function Dashboard() {
     return (
         <div>
             <button onClick={handleGetUser}>GET</button>
-            <button onClick={logOut}>Sair</button>
+            <button onClick={handleLogOut}>Sair</button>
         </div>
     )
 }

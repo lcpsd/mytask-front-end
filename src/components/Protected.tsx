@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../context/auth";
 
 export function Protected({ children }) {
 
-    const { user } = useUser()
     const navigate = useNavigate()
 
+    const bearer = localStorage.getItem("Bearer")
+
     useEffect(() => {
-        if (!user) {
+        if (!bearer) {
             navigate("/")
         }
-    }, [user])
+    }, [bearer])
 
-    if (user) {
+    if (bearer) {
         return children
     }
 }

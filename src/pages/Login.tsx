@@ -8,8 +8,7 @@ import { useEffect } from "react";
 
 export function Login() {
 
-    const { signIn } = useApi()
-    const { setUser, user } = useUser()
+    const { user, handleSignIn } = useUser()
     const navigate = useNavigate()
 
     const {
@@ -18,22 +17,16 @@ export function Login() {
         errors
     } = useFormResolver(loginSchema)
 
-
-    async function handleLogin(formData: UserLoginProps) {
-        const { data } = await signIn(formData.email, formData.password)
-
-        delete data.token
-        setUser(data)
-    }
+    const bearer = localStorage.getItem("Bearer")
 
     useEffect(() => {
-        if (user) {
+        if (bearer) {
             navigate("/dashboard")
         }
     }, [user])
 
     return (
-        <form onSubmit={handleSubmit(handleLogin)}>
+        <form onSubmit={handleSubmit(handleSignIn)}>
             <p>Email</p>
             <input type="email" {...register("email")} />
             <p>{errors.email?.message.toString()}</p>
