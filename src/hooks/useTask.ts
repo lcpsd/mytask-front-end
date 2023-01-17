@@ -22,6 +22,11 @@ export function useTaskHook() {
             const { data } = await api.get(`/task/readMany/user/${user.id}/page/${page}`)
 
             return data
+        },
+
+        async deleteTask(id: string) {
+            const res = await api.delete(`/task/${id}`)
+            return res
         }
     }
 }
