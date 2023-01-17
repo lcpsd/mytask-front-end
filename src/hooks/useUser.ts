@@ -6,9 +6,6 @@ export function useUserHook() {
         async createUser(data: NewUserProps) {
             const res = await api.post<AxiosUserRegisterProps>("/user", data)
             return res
-        },
-        async getUser() {
-
         }
     }
 }

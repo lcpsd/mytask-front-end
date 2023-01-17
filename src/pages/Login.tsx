@@ -17,8 +17,10 @@ export function Login() {
         errors
     } = useFormResolver(loginSchema)
 
+    const Bearer = localStorage.getItem("Bearer")
+
     useEffect(() => {
-        if (user) {
+        if (Bearer) {
             navigate("/dashboard")
         }
     }, [user])
