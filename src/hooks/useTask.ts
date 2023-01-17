@@ -19,7 +19,7 @@ export function useTaskHook() {
         async getManyTasks(page: string | number) {
             const user: localStorageUserProps = await getStorageUser()
 
-            const { data } = await api.get(`/task/getMany/user${user.id}/page/${page}`)
+            const { data } = await api.get(`/task/readMany/user/${user.id}/page/${page}`)
 
             return data
         }

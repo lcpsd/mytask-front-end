@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useTask } from "../context/task"
 import { useTaskHook } from "../hooks/useTask"
-import { TaskProps } from "../types/task"
 
 export function TaskList() {
 
@@ -10,7 +9,8 @@ export function TaskList() {
     const { getManyTasks } = useTaskHook()
 
     async function handleGetUserTasks() {
-        const data = await getManyTasks(page)
+        const { data, meta } = await getManyTasks(page)
+
         setTasks(data)
     }
 
@@ -22,7 +22,7 @@ export function TaskList() {
         <ul>
             {
                 tasks.map(task => (
-                    <li>{task.title}</li>
+                    <li key={task.id}>{task.title}</li>
                 ))
             }
         </ul>

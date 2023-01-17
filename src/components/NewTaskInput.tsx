@@ -1,11 +1,13 @@
 import { FieldValues } from "react-hook-form"
+import { useTask } from "../context/task"
 import { useFormResolver } from "../hooks/useFormResolver"
 import { useTaskHook } from "../hooks/useTask"
 import { taskSchema } from "../schemas/task"
 
 export function NewTaskInput() {
 
-    const { createTask } = useTaskHook()
+    const { createTask, getManyTasks } = useTaskHook()
+    const { page } = useTask()
 
     const {
         register,
@@ -20,6 +22,7 @@ export function NewTaskInput() {
         }
 
         const res = await createTask(sanitize)
+        getManyTasks(page)
     }
 
     return (
