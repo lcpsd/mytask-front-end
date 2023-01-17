@@ -1,6 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useAuth } from "../hooks/useAuth";
-import { useUserHook } from "../hooks/useUser";
+import { createContext, useContext, useState } from "react";
 
 interface AuthContextProps {
     user: UserProps | undefined;
