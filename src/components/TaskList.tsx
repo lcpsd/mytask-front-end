@@ -22,7 +22,10 @@ export function TaskList() {
         <ul>
             {
                 tasks.map(task => (
-                    <li key={task.id}>{task.title}</li>
+                    <>
+                        <li key={task.id}>{task.title}</li>
+                        <img src={`${import.meta.env.VITE_BASE_URL}/public/${task.image}`} />
+                    </>
                 ))
             }
         </ul>
