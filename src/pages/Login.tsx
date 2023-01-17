@@ -1,14 +1,14 @@
-import { FormProps, Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginSchema } from "../schemas/login";
 import { useFormResolver } from "../hooks/useFormResolver";
-import { useApi } from "../hooks/useApi";
-import axios from "axios";
 import { useUser } from "../context/auth";
 import { useEffect } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 export function Login() {
 
-    const { user, handleSignIn } = useUser()
+    const { user } = useUser()
+    const { signIn } = useAuth()
     const navigate = useNavigate()
 
     const {
@@ -17,16 +17,14 @@ export function Login() {
         errors
     } = useFormResolver(loginSchema)
 
-    const bearer = localStorage.getItem("Bearer")
-
     useEffect(() => {
-        if (bearer) {
+        if (user) {
             navigate("/dashboard")
         }
     }, [user])
 
     return (
-        <form onSubmit={handleSubmit(handleSignIn)}>
+        <form onSubmit={handleSubmit(signIn)}>
             <p>Email</p>
             <input type="email" {...register("email")} />
             <p>{errors.email?.message.toString()}</p>

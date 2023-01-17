@@ -10,12 +10,6 @@ interface UserLoginProps {
     password: string;
 }
 
-interface UserRegisterProps {
-    email: string;
-    name: string;
-    password: string;
-}
-
 interface AxiosUserLoginProps {
     data: UserProps
 }

@@ -1,12 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginSchema } from "../schemas/login";
 import { useFormResolver } from "../hooks/useFormResolver";
-import { useApi } from "../hooks/useApi";
-import { useUser } from "../context/auth";
+import { useAuth } from "../hooks/useAuth";
 
 export function Register() {
 
-    const { register } = useApi()
+    const { register } = useAuth()
     const navigate = useNavigate()
 
     const {
@@ -16,7 +15,7 @@ export function Register() {
     } = useFormResolver(loginSchema)
 
 
-    async function handleRegister(formData: UserRegisterProps) {
+    async function handleRegister(formData: NewUserProps) {
         const res = await register(formData)
     }
 
