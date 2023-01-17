@@ -17,7 +17,7 @@ export function NewTaskInput() {
             <input type="text" {...register("title")} />
             <input type="file" {...register("image")} />
             <p>{errors?.image?.message.toString()}</p>
-            <button type="submit"></button>
+            <button type="submit">Criar</button>
         </form>
     )
 }
