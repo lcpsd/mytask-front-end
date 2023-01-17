@@ -6,8 +6,8 @@ import { taskSchema } from "../schemas/task"
 
 export function NewTaskInput() {
 
-    const { createTask, getManyTasks } = useTaskHook()
-    const { page } = useTask()
+    const { createTask, getManyTasks, } = useTaskHook()
+    const { page, setTasks } = useTask()
 
     const {
         register,
@@ -15,15 +15,18 @@ export function NewTaskInput() {
         errors
     } = useFormResolver(taskSchema)
 
-    async function handleNewTask(data: FieldValues) {
+    async function handleNewTask(dataFields: FieldValues) {
         const sanitize = {
-            ...data,
-            image: data.image[0]
+            ...dataFields,
+            image: dataFields.image[0]
         }
 
-        const res = await createTask(sanitize)
-        getManyTasks(page)
+        await createTask(sanitize)
+
+        const { data } = await getManyTasks(page)
+        setTasks(data)
     }
+
 
     return (
         <form onSubmit={handleSubmit(handleNewTask)}>

@@ -16,7 +16,7 @@ export function TaskList() {
 
     async function handleDeleteTask(id: string) {
         await deleteTask(id)
-        handleGetUserTasks()
+        await handleGetUserTasks()
     }
 
     useEffect(() => {
@@ -27,11 +27,11 @@ export function TaskList() {
         <ul>
             {
                 tasks.map(task => (
-                    <>
+                    <div key={task.id}>
                         <button onClick={() => handleDeleteTask(task.id)}>Del</button>
-                        <li key={task.id}>{task.title}</li>
+                        <li>{task.title}</li>
                         <img src={`${import.meta.env.VITE_BASE_URL}/public/${task.image}`} />
-                    </>
+                    </div>
                 ))
             }
         </ul>
