@@ -19,7 +19,9 @@ export function NewTaskInput() {
             image: data.image[0]
         }
 
-        await createTask(sanitize)
+        const res = await createTask(sanitize)
+
+        console.log(res)
     }
 
     return (

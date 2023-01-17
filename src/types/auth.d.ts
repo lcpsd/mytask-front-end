@@ -5,6 +5,12 @@ interface UserProps {
     token: string;
 }
 
+interface localStorageUserProps {
+    id: string;
+    email: string;
+    name: string;
+}
+
 interface UserLoginProps {
     email: string;
     password: string;

@@ -8,15 +8,15 @@ export function Protected({ children }) {
 
     const { user } = useUser()
 
-    const Bearer = localStorage.getItem("Bearer")
+    const bearer = localStorage.getItem("bearer")
 
     useEffect(() => {
-        if (!Bearer) {
+        if (!bearer) {
             navigate("/")
         }
     }, [user])
 
-    if (Bearer) {
+    if (bearer) {
         return children
     }
 }
