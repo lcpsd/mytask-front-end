@@ -13,16 +13,20 @@ export function useAuth() {
 
             const res = await api.post<UserProps>("/auth", formData)
 
-            setUser(res.data)
+            localStorage.setItem('bearer', res.data.token)
 
-            localStorage.setItem('Bearer', res.data.token)
+            delete res.data.token
+
+            setUser(res.data)
+            localStorage.setItem('user', JSON.stringify(res.data))
 
             return res
         },
 
         async logOut() {
             setUser(null)
-            localStorage.removeItem('Bearer')
+            localStorage.removeItem('bearer')
+            localStorage.removeItem('user')
             navigate("/")
         },
 

@@ -3,10 +3,15 @@ import * as yup from "yup"
 const formats = ['image/jpg', 'image/jpeg', 'image/png'];
 
 export const taskSchema = yup.object({
-    name: yup.string().required(),
+    title: yup.string().required(),
     image: yup.mixed()
-        .test('Fichier taille',
-            'upload file', (value) => !value || (value && value.size <= 1024 * 1024))
+        .test('fileSize',
+            'Arquivo muito grande', (value) => (
+                value && value[0].size <= 2000000 //2MB
+            ))
+
         .test('format',
-            'upload file', (value) => !value || (value && formats.includes(value.type))),
+            'Formato não suportado', (value) => (
+                value[0] && formats.includes(value[0].type)
+            )),
 })

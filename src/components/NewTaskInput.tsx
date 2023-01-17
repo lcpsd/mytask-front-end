@@ -1,3 +1,4 @@
+import { FieldValues } from "react-hook-form"
 import { useFormResolver } from "../hooks/useFormResolver"
 import { useTask } from "../hooks/useTask"
 import { taskSchema } from "../schemas/task"
@@ -12,8 +13,17 @@ export function NewTaskInput() {
         errors
     } = useFormResolver(taskSchema)
 
+    async function handleNewTask(data: FieldValues) {
+        const sanitize = {
+            ...data,
+            image: data.image[0]
+        }
+
+        await createTask(sanitize)
+    }
+
     return (
-        <form onSubmit={handleSubmit(createTask)}>
+        <form onSubmit={handleSubmit(handleNewTask)}>
             <input type="text" {...register("title")} />
             <input type="file" {...register("image")} />
             <p>{errors?.image?.message.toString()}</p>
